@@ -12,7 +12,7 @@ export async function setSessionCookie(idToken: string) {
 
   // Create session cookie
   const sessionCookie = await auth.createSessionCookie(idToken, {
-    expiresIn: SESSION_DURATION * 1000, // milliseconds
+    expiresIn: SESSION_DURATION * 1000, 
   });
 
   // Set cookie in the browser
@@ -41,8 +41,6 @@ export async function signUp(params: SignUpParams) {
     await db.collection("users").doc(uid).set({
       name,
       email,
-      // profileURL,
-      // resumeURL,
     });
 
     return {
@@ -80,7 +78,7 @@ export async function signIn(params: SignInParams) {
 
     await setSessionCookie(idToken);
   } catch (error: any) {
-    console.log("");
+    console.log(error);
 
     return {
       success: false,
